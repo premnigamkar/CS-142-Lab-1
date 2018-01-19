@@ -1,4 +1,5 @@
-#include <iostream>sss
+#include <iostream>
+#include<conio.h>
 using namespace std;
 //node of a LinkedList
 class Node{
@@ -27,17 +28,20 @@ public:
     void Insert(int x){
         Node *temp=new Node;
         temp->data=x;
-        temp->next=NULL;
         ++n;
         //checking if the LinkedList is empty
         if (head==NULL){
             head=temp;
             tail=temp;
+
         }
         else{
+
             tail->next=temp;
             tail=temp;
+
         }
+         tail->next=head;
     }
 //Inserting node at given position
     void InsertAt(int x, int y){//x=data and y=position
@@ -78,7 +82,7 @@ public:
         }
         delete tail;
         tail=locate;
-        locate->next=NULL;
+        locate->next=head;
         --n;//decrement of number of nodes of LinkedList
     }
 //deleting an element at a given position
@@ -110,7 +114,7 @@ public:
     void Display(){
         Node *disp;
         disp=head;
-        while (disp!=NULL){
+        while (disp=head){
             cout<<endl<<endl<<disp->data<<endl;
             disp=disp->next;
         }
@@ -122,7 +126,7 @@ int main(){
     int s;
     do {
     cout<<"Choose one of the following: \n 1.Insert \n 2.InsertAt \n 3.Delete \n 4.DeleteAt\n 5.Count \n 6. Display \n 7.Exit\n\n";
-    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"---------------------------------------------------------------------------------------------------------------------------------------"<<endl;
     cin>>s;
     switch(s)
     {
