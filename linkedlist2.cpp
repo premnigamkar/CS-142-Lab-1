@@ -1,5 +1,5 @@
 #include <iostream>
-#include<conio.h>
+#include<stdlib.h>
 using namespace std;
 //node of a LinkedList
 class Node{
@@ -28,20 +28,17 @@ public:
     void Insert(int x){
         Node *temp=new Node;
         temp->data=x;
+        temp->next=NULL;
         ++n;
         //checking if the LinkedList is empty
         if (head==NULL){
             head=temp;
             tail=temp;
-
         }
         else{
-
             tail->next=temp;
             tail=temp;
-
         }
-         tail->next=head;
     }
 //Inserting node at given position
     void InsertAt(int x, int y){//x=data and y=position
@@ -82,7 +79,7 @@ public:
         }
         delete tail;
         tail=locate;
-        locate->next=head;
+        locate->next=NULL;
         --n;//decrement of number of nodes of LinkedList
     }
 //deleting an element at a given position
@@ -94,6 +91,7 @@ public:
             temp=head;
             head=temp->next;
             delete temp;
+            --n;
         }
         else {
             Node *locate;//to locate the position of the node to be deleted
@@ -105,6 +103,7 @@ public:
             temp=locate->next;
             locate->next=temp->next;
             delete temp;
+            --n;
         }
         }
 //number of elements in the LinkedList
@@ -114,11 +113,12 @@ public:
     void Display(){
         Node *disp;
         disp=head;
-        while (disp=head){
+        while (disp!=NULL){
             cout<<endl<<endl<<disp->data<<endl;
             disp=disp->next;
         }
         cout<<endl;
+
     }
 };
 int main(){
@@ -126,7 +126,7 @@ int main(){
     int s;
     do {
     cout<<"Choose one of the following: \n 1.Insert \n 2.InsertAt \n 3.Delete \n 4.DeleteAt\n 5.Count \n 6. Display \n 7.Exit\n\n";
-    cout<<"---------------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"---------------------------------------------------------------------------------------------------------------"<<endl;
     cin>>s;
     switch(s)
     {
@@ -135,34 +135,40 @@ int main(){
         int x;
         cin>>x;
         List1.Insert(x);
+        system("CLS");
         break;
     case 2:
         cout<<"Enter the element to be inserted and it's position: \n"<<endl;
         int a,b;
         cin>>a>>b;
         List1.InsertAt(a,b);
+        system("CLS");
         break;
     case 3:
         List1.Delete();
+        system("CLS");
         break;
     case 4:
         cout<<"Enter the position of the element to be deleted:"<<endl;
         int c;
         cin>>c;
         List1.DeleteAt(c);
+        system("CLS");
         break;
     case 5:
         cout<<"The number of elements in the LinkedList is: "<<List1.Count()<<endl;
         break;
     case 6:
+        system("CLS");
         List1.Display();
-        break;
+
+         break;
     default:
         s=7;
         cout<<"\nPlease enter correct choice(1-6)!!";
         break;
     }
+
 } while (s!=7);
 return 0;
 }
-
